@@ -1,0 +1,215 @@
+@charset "UTF-8";
+/* 기본 Body 및 컨테이너 스타일 */
+body {
+font-family: 'Poppins', sans-serif; /* 현대적이고 깔끔한 폰트 */
+background-color: #f8f9fa; /* 밝은 회색 배경 */
+color: #343a40; /* 가독성을 위한 어두운 텍스트 */
+}
+
+.container-fluid.py-4 {
+padding-top: 2.5rem !important;
+padding-bottom: 2.5rem !important;
+}
+
+/* 페이지 헤더 및 설명 */
+h4.text-dark.fw-bold {
+color: #212529 !important; /* 강조를 위한 더 어두운 색 */
+font-size: 1.8rem;
+margin-bottom: 0.5rem;
+}
+
+p.text-sm.text-secondary {
+color: #6c757d !important;
+font-size: 0.95rem;
+line-height: 1.5;
+}
+
+/* 폼 선택 요소 (정렬 및 필터) - 이미지와 같이 파란색 외곽선 항상 적용 */
+form.d-flex .form-select {
+border-radius: 0.5rem;
+border: 1px solid #80bdff; /* 파란색 테두리 */
+/* 오른쪽 패딩을 늘려 텍스트와 드롭다운 화살표 사이 공간 확보 */
+padding: 0.5rem 2.5rem 0.5rem 1rem; /* 기존 2rem에서 2.5rem으로 더 늘림 (더 안전한 공간 확보) */
+font-size: 0.9rem;
+/* 이미지처럼 항상 파란색 그림자 적용 */
+box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+transition: all 0.3s ease-in-out;
+cursor: pointer;
+/* Bootstrap 기본 `.form-select`는 `background-image`로 화살표를 사용하므로,
+* 패딩을 늘려도 겹친다면 `background-position`을 조정할 수 있습니다.
+* 하지만 대부분의 경우 패딩 증가로 해결됩니다. */
+/* background-position: right 1rem center;  // 필요하다면 이 주석을 풀고 값 조정 */
+}
+
+form.d-flex .form-select:focus {
+/* 포커스 시 기본 아웃라인만 제거하고, 이미 적용된 그림자와 테두리를 유지 */
+outline: 0;
+/* 필요하다면 포커스 시 더 진한 그림자나 다른 효과를 추가할 수 있습니다. */
+/* box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.5); */
+}
+
+/* 계약 상품 선택 */
+#productSelect {
+border-radius: 0.5rem;
+border: 1px solid #ced4da;
+padding: 0.6rem 1rem;
+font-size: 1rem;
+box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+transition: all 0.3s ease-in-out;
+cursor: pointer;
+}
+
+#productSelect:focus {
+border-color: #80bdff;
+box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+outline: 0;
+}
+
+.form-label {
+font-weight: 600;
+color: #495057;
+margin-bottom: 0.5rem;
+}
+
+/* 상품 카드 */
+.card.shadow.border {
+border-radius: 1rem; /* 부드러운 외관을 위한 둥근 모서리 */
+overflow: hidden; /* 헤더 배경이 테두리 반경을 따르도록 함 */
+transition: transform 0.3s ease, box-shadow 0.3s ease; /* 부드러운 호버 효과 */
+border: none; /* 그림자가 충분하다면 기본 테두리 제거 */
+box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* 더 강하고 선명한 그림자 */
+display: flex;
+flex-direction: column; /* 내용을 세로로 정렬 */
+height: 100%; /* 부모 높이에 맞춰 카드 높이 일치 */
+}
+
+.card.shadow.border:hover {
+transform: translateY(-5px); /* 호버 시 카드 위로 살짝 올리기 */
+box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15); /* 호버 시 그림자 강화 */
+}
+
+.card-header.bg-gradient-primary {
+background: linear-gradient(135deg, #6f42c1, #007bff) !important; /* 더 생생한 그라데이션 */
+color: #fff; /* 헤더 전체 텍스트 색상을 흰색으로 */
+padding: 1rem 1.5rem;
+border-bottom: none; /* 헤더 테두리 제거 */
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.card-header h6 {
+font-size: 1.25rem;
+font-weight: 700;
+margin-bottom: 0;
+letter-spacing: 0.5px;
+/* 이 h6 태그 자체에 text-white 클래스가 적용될 것이므로 여기서 color를 덮어쓸 필요는 없습니다. */
+/* 만약 text-white 클래스가 없다면 여기에 color: #fff; 를 추가합니다. */
+}
+
+.btn.btn-sm.btn-light.text-dark {
+background-color: rgba(255, 255, 255, 0.85); /* 약간 투명한 흰색 */
+color: #495057 !important;
+border-radius: 0.35rem;
+font-weight: 600;
+padding: 0.4rem 0.9rem;
+transition: background-color 0.3s ease, color 0.3s ease;
+border: none;
+flex-shrink: 0; /* 버튼이 줄어들지 않도록 */
+}
+
+.btn.btn-sm.btn-light.text-dark:hover {
+background-color: #ffffff; /* 호버 시 불투명한 흰색 */
+color: #0056b3 !important; /* 호버 시 텍스트에 은은한 파란색 */
+}
+
+.card-body {
+padding: 1.5rem;
+line-height: 1.6;
+flex-grow: 1; /* 카드 본문이 남은 공간을 차지하도록 */
+}
+
+.card-body p {
+margin-bottom: 0.75rem;
+color: #495057;
+}
+
+.card-body p strong {
+color: #212529;
+}
+
+.card-footer {
+padding: 1rem 1.5rem;
+background-color: #f1f4f8; /* 푸터 배경색 */
+border-top: 1px solid #e9ecef;
+display: flex;
+justify-content: flex-end; /* 버튼들을 오른쪽으로 정렬 */
+gap: 0.75rem; /* 버튼 사이 간격 */
+}
+
+.card-footer .btn {
+font-size: 0.9rem;
+padding: 0.5rem 1rem;
+border-radius: 0.35rem;
+}
+
+/* 뱃지 */
+.badge {
+padding: 0.5em 0.8em;
+border-radius: 0.35rem;
+font-size: 0.85rem;
+font-weight: 600;
+vertical-align: middle;
+}
+
+.badge.bg-success {
+background-color: #28a745 !important;
+color: #fff;
+}
+
+.badge.bg-secondary {
+background-color: #6c757d !important;
+color: #fff;
+}
+
+/* 통계 카드 */
+.statistic-card {
+background: linear-gradient(45deg, #f0f2f5, #e0e4eb);
+border-radius: 1rem;
+padding: 1.5rem;
+text-align: center;
+box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+.statistic-card .icon {
+font-size: 2.5rem;
+color: #007bff;
+margin-bottom: 0.5rem;
+}
+.statistic-card .value {
+font-size: 2.2rem;
+font-weight: 700;
+color: #343a40;
+line-height: 1;
+}
+.statistic-card .label {
+font-size: 0.9rem;
+color: #6c757d;
+margin-top: 0.25rem;
+font-weight: 500;
+}
+
+/* 새 상품 추가 버튼 */
+.add-product-btn {
+background-color: #28a745;
+color: white;
+border-radius: 0.75rem;
+padding: 0.75rem 1.5rem;
+font-size: 1.1rem;
+font-weight: 600;
+transition: background-color 0.3s ease, transform 0.2s ease;
+box-shadow: 0 0.25rem 0.75rem rgba(40, 167, 69, 0.3);
+}
+.add-product-btn:hover {
+background-color: #218838;
+transform: translateY(-2px);
+}

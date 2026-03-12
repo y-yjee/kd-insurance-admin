@@ -1,0 +1,175 @@
+@charset "UTF-8";
+
+/* Custom Navy Button */
+.custom-navy-btn {
+    background-color: #1A237E; /* Deep Navy */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.custom-navy-btn:hover {
+    background-color: #283593; /* 약간 밝은 네이비로 hover 효과 */
+}
+
+/* Dashboard Specific Styles */
+.card {
+    border: none; /* Material Dashboard 3 기본 스타일을 살리기 위해 border 제거 */
+    border-radius: 0.75rem; /* Material Dashboard 3의 둥근 모서리 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 효과 */
+    margin-bottom: 1.5rem; /* 카드 하단 여백 */
+    background-color: #fff;
+    transition: all 0.3s ease-in-out; /* 모든 변화에 부드러운 전환 */
+}
+
+/* Summary Cards */
+.summary-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* 링크가 카드 전체를 감싸도록 */
+}
+
+.summary-card {
+    min-height: 120px; /* 요약 카드 최소 높이 설정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    position: relative; /* Before pseudo-element 위치 기준 */
+    overflow: hidden; /* 배경 애니메이션 시 내용이 넘치지 않도록 */
+}
+
+.summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #2D4470, #1A237E); /* 그라데이션 배경 */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+}
+
+.summary-card:hover::before {
+    opacity: 1; /* 호버 시 그라데이션 나타남 */
+}
+
+.summary-card .card-body {
+    position: relative;
+    z-index: 2; /* 내용이 배경 위에 오도록 */
+}
+
+.summary-card h6 {
+    font-weight: 500;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.summary-card h3 {
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: 700;
+    color: #344767; /* Material Dashboard 3 기본 텍스트 색상 */
+    transition: color 0.3s ease-in-out;
+}
+
+.summary-card:hover h6,
+.summary-card:hover h3 {
+    color: #ffffff; /* 호버 시 텍스트 흰색 */
+}
+
+/* Section Titles */
+.section-title {
+    margin: 1.5rem 0 1rem; /* 상하 여백 조정 */
+    font-weight: bold;
+    font-size: 1.35rem; /* 약간 더 크게 */
+    color: #344767; /* Material Dashboard 3 기본 텍스트 색상 */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* 아이콘과 텍스트 사이 간격 */
+}
+
+/* Charts - Height adjustments for chart cards */
+.chart-card {
+    min-height: 420px; /* 두 차트 높이 맞추기 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Chart canvas size within chart cards */
+.chart-card canvas {
+    width: 100% !important;
+    height: 320px !important; /* 차트 캔버스 높이 조정 */
+    object-fit: contain;
+}
+
+/* Tables */
+.table th, .table td {
+    padding: 0.75rem; /* 셀 패딩 조정 */
+    vertical-align: middle;
+    border-top: 1px solid #e9ecef;
+    text-align: center; /* 모든 테이블 헤더와 셀의 텍스트를 가운데 정렬 */
+}
+
+.table thead th {
+    background-color: #f8f9fa; /* 헤더 배경색 */
+    color: #6c757d;
+    font-weight: 600;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.table-bordered td:last-child,
+.table-bordered th:last-child {
+  border-right: 1px solid #dee2e6 !important;
+}
+
+.clickable-row {
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.clickable-row:hover {
+    background-color: #f0f2f5; /* Material Dashboard 3 느낌의 밝은 회색 */
+    transform: translateY(-2px); /* 약간 위로 떠오르는 효과 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* 그림자 추가 */
+}
+
+/* Form Elements */
+select:focus,
+select {
+    border: 1px solid #dee2e6;
+    outline: none;
+    padding: 0.375rem 0.75rem;
+    background-color: #fff;
+    border-radius: 0.25rem;
+}
+
+select.form-select {
+    border: 1px solid #dee2e6 !important;
+    outline: none;
+}
+
+select.form-select:focus {
+    border: 1px solid #dee2e6 !important;
+    box-shadow: none;
+}
+
+.form-check-input {
+    border-color: #ced4da;
+    background-color: #fff;
+}
+
+.form-check-input:checked {
+    background-color: #2d4470;
+    border-color: #1A237E;
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+}
+

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.ContractMapper">
+	<!-- 결과 매핑 정의 추가 -->
+    <resultMap id="contractMap" type="org.zerock.domain.ContractVO">
+        <id property="contract_id" column="contract_id" />
+        <result property="customer_id" column="customer_id" />
+        <result property="customerName" column="customerName" />
+        <result property="insured_id" column="insured_id" />
+        <result property="insuredName" column="insuredName" />
+        <result property="product_name" column="product_name" />
+        <result property="start_date" column="start_date" />
+        <result property="end_date" column="end_date" />
+        <result property="status" column="status" />
+        <result property="reg_date" column="reg_date" />
+    </resultMap>
+
+    <!-- 전체 리스트 조회 (조인 포함) -->
+    <select id="getList" resultMap="contractMap">
+        SELECT 
+            c.contract_id,
+            c.customer_id,
+            cu.name AS customerName,
+            c.insured_id,
+            ip.name AS insuredName,
+            c.product_name,
+            c.start_date,
+            c.end_date,
+            c.status,
+            c.reg_date
+        FROM contract c
+        JOIN customer cu ON c.customer_id = cu.customer_id
+        JOIN insured_person ip ON c.insured_id = ip.insured_id
+        ORDER BY c.contract_id DESC
+    </select>
+    
+    
+    <!-- 계약 상세 조회 -->
+    <select id="read" resultMap="contractMap">
+        SELECT 
+            c.contract_id,
+            c.customer_id,
+            cu.name AS customerName,  <!-- 고객 이름 (customer 테이블에서 가져오기) -->
+            c.insured_id,
+            ip.name AS insuredName,   <!-- 피보험자 이름 (insured_person 테이블에서 가져오기) -->
+            c.product_name,
+            c.start_date,
+            c.end_date,
+            c.status,
+            c.reg_date
+        FROM contract c
+        JOIN customer cu ON c.customer_id = cu.customer_id  <!-- customer 테이블 조인 -->
+        JOIN insured_person ip ON c.insured_id = ip.insured_id  <!-- insured_person 테이블 조인 -->
+        WHERE c.contract_id = #{contract_id}
+    </select>
+
+    <!-- 계약 등록 -->
+   <insert id="insert">
+
+	  INSERT INTO contract (
+	      customer_id,
+	      insured_id,
+	      product_name,
+	      start_date,
+	      end_date,
+	      status
+	  ) VALUES (  
+	      #{customer_id},
+	      #{insured_id},
+	      #{product_name},
+	      #{start_date},
+	      #{end_date},
+	      #{status}
+	  )
+	</insert>
+
+    <!-- 계약 수정 -->
+	 <update id="modify" parameterType="org.zerock.domain.ContractVO">
+	    UPDATE contract
+	    SET
+	        customer_id = #{customer_id, jdbcType=VARCHAR},
+	        insured_id = #{insured_id, jdbcType=VARCHAR},
+	        product_name = #{product_name, jdbcType=VARCHAR},
+	        start_date = #{start_date, jdbcType=DATE},
+	        end_date = #{end_date, jdbcType=DATE},
+	        status = #{status, jdbcType=VARCHAR}
+	    WHERE contract_id = #{contract_id, jdbcType=NUMERIC}
+	</update>
+
+    <!-- 계약 삭제 -->
+    <delete id="remove">
+        DELETE FROM contract WHERE contract_id = #{contract_id}
+    </delete>
+
+</mapper>

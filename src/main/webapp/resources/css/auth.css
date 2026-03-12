@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+/* 관리자 권한 설정 */
+    body {
+        font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background-color: #e9ecef; /* Light gray background for the entire page */
+    }
+
+    .text-white-50.hover-white:hover {
+        color: #fff !important; /* White on hover for sidebar links */
+        background-color: rgba(255, 255, 255, 0.08); /* Slight highlight on hover */
+    }
+
+    /* Ensuring menu items are flush and not rounded */
+    .nav-link.rounded-0 {
+        border-radius: 0 !important;
+    }
+
+    .nav-link.active {
+        background-color: rgba(255,255,255,0.1) !important;
+        color: #fff !important;
+    }
+
+    /* Card styling for integrated look */
+    .card.rounded-0 {
+        border-radius: 0 !important; /* Remove card's own border-radius */
+    }
+
+    .card-header.rounded-0 {
+        border-radius: 0 !important; /* Ensure header also has no border-radius */
+    }
+
+    /* Table styling to match the screenshot */
+    .table th, .table td {
+        padding: 1rem; /* More padding for table cells */
+        border-top: none; /* Remove default table top border */
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f0f0f0; /* Lighter gray on hover for table rows */
+    }
+
+    .table-borderless > :not(caption) > * > * {
+        border-bottom-width: 0px !important; /* Ensure no borders */
+    }
+
+    .table .border-bottom {
+        border-bottom: 1px solid #dee2e6 !important; /* Add bottom border to rows for separation */
+    }
+
+    .table tbody tr:last-child.border-bottom {
+        border-bottom: none !important; /* No border for the last row */
+    }
+
+    .form-check-input {
+        transform: scale(1.1); /* Slightly larger checkboxes */
+    }
+
+    /* Profile image styling as per screenshot */
+    .profile-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%; /* Make it circular */
+        object-fit: cover; /* Ensure image covers the area */
+        background-color: #f0f0f0; /* Placeholder background if image doesn't load */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8em; /* Adjust font size if text is used directly */
+        color: #6c757d; /* Text color for placeholder */
+        border: 1px solid #e0e0e0; /* Subtle border for profile image */
+    }
+
+    /* Adjusted delete button positioning */
+    .text-start {
+        text-align: left !important;
+    }
+
+    /* Added table-responsive border styles */
+    .table-responsive.border {
+        border: 1px solid #e0e0e0 !important; /* Light gray border */
+        border-radius: 0.25rem; /* Slightly rounded corners */
+    }
+    .table-responsive.border .table {
+        margin-bottom: 0; /* Remove default table bottom margin */
+    }

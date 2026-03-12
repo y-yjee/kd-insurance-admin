@@ -1,0 +1,120 @@
+@charset "UTF-8";
+/* 주간 뉴스 카드 스타일 */
+.news-card {
+    color: #495057;
+    background: #ffffff;
+}
+
+.news-card:hover {
+    background: #f8f9fa; /* 호버 시 약간의 변화 */
+}
+
+.news-icon {
+    font-size: 4rem; /* 아이콘 크기 확대 */
+    color: var(--primary-color, #007bff); /* 메인 색상 적용 */
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.news-card:hover .news-icon {
+    transform: scale(1.1);
+}
+
+.news-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+/* 이번주 주요 일정 카드 스타일 */
+.schedule-card {
+    background-color: #ffffff;
+    color: #495057;
+    transition: background-color 0.3s ease;
+}
+
+.schedule-card:hover {
+    background-color: #334460; /* 호버 시 배경색 변경 */
+    color: #ffffff; /* 텍스트 색상 변경 */
+}
+
+.schedule-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.schedule-card:hover .schedule-title {
+    color: #ffffff; /* 제목 텍스트 색상 변경 */
+}
+
+.schedule-container {
+    overflow: hidden;
+    height: 3.5rem; /* 높이 조정 */
+    width: 100%;
+    cursor: pointer;
+}
+
+.schedule-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    animation: scrollUp 15s linear infinite;
+    font-size: 1.1rem; /* 폰트 크기 조정 */
+    line-height: 1.75;
+    text-align: left;
+    transition: color 0.3s ease;
+}
+
+/* 호버 시 li 텍스트 색상 변경 */
+.schedule-card:hover .schedule-list {
+    color: #ffffff;
+    animation-play-state: paused;
+}
+
+.schedule-list li {
+    padding: 0.25rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.schedule-list li .schedule-date {
+    font-weight: bold;
+    color: var(--primary-color, #007bff); /* 날짜 강조 */
+    margin-right: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+/* 호버 시 날짜 텍스트 색상 변경 */
+.schedule-card:hover .schedule-list li .schedule-date {
+    color: #ffffff;
+}
+
+/* 스크롤 애니메이션 재정의 */
+@keyframes scrollUp {
+    0% { transform: translateY(0); }
+    20% { transform: translateY(0); }
+    40% { transform: translateY(-3.5rem); }
+    60% { transform: translateY(-7rem); }
+    80% { transform: translateY(-10.5rem); }
+    100% { transform: translateY(-14rem); }
+}
+
+/* 높이 통일 */
+.align-items-stretch .summary-card-link,
+.align-items-stretch .summary-card {
+    height: 100%;
+}
+
+.align-items-stretch .summary-card .card-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

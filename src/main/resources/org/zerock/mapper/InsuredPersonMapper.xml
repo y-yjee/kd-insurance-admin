@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.InsuredPersonMapper">
+
+    <!-- 전체 피보험자 목록 -->
+    <select id="getList" resultType="org.zerock.domain.InsuredPersonVO">
+        SELECT * FROM insured_person ORDER BY reg_date DESC
+    </select>
+
+    <!-- 피보험자 단건 조회 -->
+    <select id="read" resultType="org.zerock.domain.InsuredPersonVO" parameterType="String">
+        SELECT * FROM insured_person
+        WHERE insured_id = #{insured_id, jdbcType=VARCHAR}
+    </select>
+
+    <!-- 피보험자 등록 -->
+    <insert id="insert" parameterType="org.zerock.domain.InsuredPersonVO">
+        INSERT INTO insured_person (
+            insured_id,
+            customer_id,
+            name,
+            birth_date,
+            gender,
+            relationship,
+            reg_date
+        ) VALUES (
+            #{insured_id, jdbcType=VARCHAR},
+            #{customer_id, jdbcType=VARCHAR},
+            #{name, jdbcType=VARCHAR},
+            #{birth_date, jdbcType=DATE},
+            #{gender, jdbcType=CHAR},
+            #{relationship, jdbcType=VARCHAR},
+            SYSDATE
+        )
+    </insert>
+
+    <!-- 피보험자 수정 -->
+    <update id="update" parameterType="org.zerock.domain.InsuredPersonVO">
+        UPDATE insured_person
+        SET
+            customer_id = #{customer_id, jdbcType=VARCHAR},
+            name = #{name, jdbcType=VARCHAR},
+            birth_date = #{birth_date, jdbcType=DATE},
+            gender = #{gender, jdbcType=CHAR},
+            relationship = #{relationship, jdbcType=VARCHAR}
+        WHERE insured_id = #{insured_id, jdbcType=VARCHAR}
+    </update>
+
+    <!-- 피보험자 삭제 -->
+    <delete id="delete" parameterType="String">
+        DELETE FROM insured_person WHERE insured_id = #{insured_id, jdbcType=VARCHAR}
+    </delete>
+    
+    <!-- 고객 ID로 피보험자 목록 조회 -->
+	<select id="getByCustomerId" parameterType="String" resultType="org.zerock.domain.InsuredPersonVO">
+	  SELECT * 
+	  FROM insured_person 
+	  WHERE customer_id = #{customerId}
+	</select>
+
+</mapper>

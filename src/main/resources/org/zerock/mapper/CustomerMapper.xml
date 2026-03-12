@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.CustomerMapper">
+
+    <!-- 전체 고객 목록 -->
+    <select id="getList" resultType="org.zerock.domain.CustomerVO">
+        <!-- SELECT * FROM customer ORDER BY reg_date DESC -->
+        SELECT * FROM customer ORDER BY name
+    </select>
+
+    <!-- 특정 고객 조회 -->
+    <select id="read" resultType="org.zerock.domain.CustomerVO">
+        SELECT * FROM customer WHERE customer_id = #{customer_id}
+    </select>
+
+    <!-- 고객 등록 -->
+    <insert id="insert">
+        INSERT INTO customer (
+            customer_id,
+            password,
+            name,
+            birth_date,
+            gender,
+            phone,
+            email,
+            address,
+            role,
+            reg_date
+        ) VALUES (
+            #{customer_id},
+            #{password},
+            #{name},
+            #{birth_date},
+            #{gender},
+            #{phone},
+            #{email},
+            #{address},
+            #{role},
+            SYSDATE
+        )
+    </insert>
+
+    <!-- 고객 수정 -->
+    <update id="update">
+        UPDATE customer
+        SET
+            password = #{password},
+            name = #{name},
+            birth_date = #{birth_date},
+            gender = #{gender},
+            phone = #{phone},
+            email = #{email},
+            address = #{address},
+            role = #{role}
+        WHERE customer_id = #{customer_id}
+    </update>
+
+    <!-- 고객 삭제 -->
+    <delete id="delete">
+        DELETE FROM customer WHERE customer_id = #{customer_id}
+    </delete>
+
+</mapper>

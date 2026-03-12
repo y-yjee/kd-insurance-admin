@@ -1,0 +1,49 @@
+@charset "UTF-8";
+  .guide-container {
+    padding: 40px;
+    background-color: #f8f9fa;
+  }
+
+  .guide-title {
+    font-size: 2rem;
+    color: #2d4470;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .guide-section {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  }
+
+  .guide-section h3 {
+    color: #2d4470;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .guide-section p {
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .guide-section ul {
+    margin-left: 20px;
+    padding-left: 10px;
+  }
+
+  .guide-section ul li {
+    margin-bottom: 8px;
+  }
+
+  .badge-tip {
+    background-color: #17a2b8;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    vertical-align: middle;
+  }

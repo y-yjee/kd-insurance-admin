@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.DashboardMapper">
+
+  <select id="getCustomerCount" resultType="int">
+    <![CDATA[
+      SELECT COUNT(*) FROM customer
+    ]]>
+  </select>
+
+  <select id="getInsuredPersonCount" resultType="int">
+    <![CDATA[
+      SELECT COUNT(*) FROM insured_person
+    ]]>
+  </select>
+
+  <select id="getContractCount" resultType="int">
+    <![CDATA[
+      SELECT COUNT(*) FROM contract
+    ]]>
+  </select>
+
+  <select id="getNoticeCount" resultType="int">
+    <![CDATA[
+      SELECT COUNT(*) FROM notice
+    ]]>
+  </select>
+
+  <select id="getRecentContracts" resultType="org.zerock.domain.ContractVO">
+	  <![CDATA[
+	    SELECT *
+	    FROM (
+	      SELECT 
+	        c.contract_id,
+	        c.customer_id,
+	        c.insured_id,
+	        c.product_name,
+	        c.start_date,
+	        c.end_date,
+	        c.status,
+	        cu.name AS customerName,
+	        ip.name AS insuredName
+	      FROM contract c
+	      JOIN customer cu ON c.customer_id = cu.customer_id
+	      JOIN insured_person ip ON c.insured_id = ip.insured_id
+	      ORDER BY c.contract_id DESC
+	    )
+	    WHERE ROWNUM <= 10
+	  ]]>
+	</select>
+
+  <select id="getRecentNotices" resultType="org.zerock.domain.NoticeVO">
+  <![CDATA[
+    SELECT 
+      notice_id,
+      title,
+      writer,
+      reg_date,
+      important 
+    FROM (
+      SELECT *
+      FROM notice
+      ORDER BY notice_id DESC
+    )
+    WHERE ROWNUM <= 10
+  ]]>
+</select>
+
+</mapper>

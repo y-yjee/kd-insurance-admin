@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.NoticeReplyMapper">
+
+  <!-- a. 댓글 등록 -->
+  <insert id="insert">
+	  <selectKey keyProperty="rno" resultType="long" order="BEFORE">
+	    SELECT SEQ_NOTICE_REPLY.NEXTVAL FROM dual
+	  </selectKey>
+	  
+	  INSERT INTO notice_reply (rno, notice_id, reply, replyer)
+	  VALUES (#{rno}, #{notice_id}, #{reply}, #{replyer})
+  </insert>
+
+  <!-- b. 특정 댓글 조회 -->
+  <select id="read" resultType="org.zerock.domain.NoticeReplyVO">
+    SELECT * FROM notice_reply WHERE rno = #{rno}
+  </select>
+
+  <!-- c. 댓글 삭제 -->
+  <delete id="delete">
+    DELETE FROM notice_reply WHERE rno = #{rno}
+  </delete>
+
+  <!-- d. 댓글 수정 -->
+  <update id="update">
+    UPDATE notice_reply 
+    SET reply = #{reply}, updateDate = SYSDATE
+    WHERE rno = #{rno}
+  </update>
+
+  <!-- e. 댓글 목록 (페이징) -->
+  <select id="getListWithPaging" resultType="org.zerock.domain.NoticeReplyVO">
+    <![CDATA[
+      SELECT * FROM (
+        SELECT /*+ INDEX_DESC(nr idx_notice_reply) */
+               ROWNUM rn, nr.*
+        FROM notice_reply nr
+        WHERE notice_id = #{notice_id}
+          AND ROWNUM <= #{cri.pageNum} * #{cri.amount}
+      )
+      WHERE rn > (#{cri.pageNum} - 1) * #{cri.amount}
+    ]]>
+  </select>
+
+  <!-- f. 특정 공지사항의 댓글 수 -->
+  <select id="getCountByNoticeId" resultType="int">
+    SELECT COUNT(*) FROM notice_reply WHERE notice_id = #{notice_id}
+  </select>
+
+</mapper>

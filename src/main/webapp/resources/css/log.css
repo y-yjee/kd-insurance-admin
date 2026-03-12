@@ -1,0 +1,51 @@
+@charset "UTF-8";
+.system-log-container {
+    padding: 40px;
+  }
+
+  .system-log-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2d4470;
+    margin-bottom: 25px;
+  }
+
+  .system-log-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .system-log-table th,
+  .system-log-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .system-log-table th {
+    background-color: #2d4470;
+    color: white;
+    font-weight: bold;
+  }
+
+  .badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .badge-success {
+    background-color: #28a745;
+    color: white;
+  }
+
+  .badge-fail {
+    background-color: #dc3545;
+    color: white;
+  }

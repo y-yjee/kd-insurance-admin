@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="customAccessDenied" class="org.zerock.security.CustomAccessDeniedHandler" ></bean>
+	<bean id="customLoginSuccess" class="org.zerock.security.CustomLoginSuccessHandler"></bean>
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
+
+	<security:http auto-config="true" use-expressions="true">
+	    <security:csrf disabled="true"/>
+	
+	    <!-- 접근 제한 먼저 -->
+	    <security:intercept-url pattern="/navbar/dashboard" access="hasRole('ROLE_ADMIN')"/>
+	    
+	    <!-- 정적 자원 허용 -->
+	    <security:intercept-url pattern="/resources/**" access="permitAll"/>
+	    
+	    <!-- 로그인/등록 허용 -->
+	    <security:intercept-url pattern="/admin/login" access="permitAll"/>
+	    <security:intercept-url pattern="/admin/register" access="permitAll"/>
+	    
+	    <!-- 나머지 전체 허용 -->
+	    <security:intercept-url pattern="/**" access="permitAll"/>
+		
+		<!-- 접근 제한 메세지 처리 -->
+		<security:access-denied-handler ref="customAccessDenied" />
+		
+	    <security:form-login 
+			login-page="/admin/login" 
+			login-processing-url="/admin/login"
+			authentication-success-handler-ref="customLoginSuccess" />
+	    <security:logout logout-url="/customLogout" invalidate-session="true" />
+	    
+	    
+	</security:http>
+	
+	<security:authentication-manager>
+		
+		<security:authentication-provider>
+			<!-- JDBC 인증 추가 -->
+<!-- 			<security:jdbc-user-service data-source-ref="dataSource"/> -->
+			<!-- 쿼리를 이용하는 인증 -->
+			<security:jdbc-user-service data-source-ref="dataSource"
+    users-by-username-query="select userid as username, userpw as password, enabled from alegria_member where userid =? "
+    authorities-by-username-query="select userid as username, auth as authority from alegria_member_auth where userid=? "/>
+
+			<!-- PasswordEncoder 연습용 빈 -->
+<!-- 			<security:password-encoder ref="customPasswordEncoder" /> -->
+			<!-- bcryptPasswordEncoder 패스워드 암호화 처리 빈 -->
+			<security:password-encoder ref="bcryptPasswordEncoder"/>
+			
+		</security:authentication-provider>
+	
+	</security:authentication-manager>
+
+</beans>

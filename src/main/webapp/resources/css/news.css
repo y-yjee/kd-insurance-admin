@@ -1,0 +1,47 @@
+@charset "UTF-8";
+.news-list-container {
+    background-color: #f8f9fa; /* Light gray background */
+    border: 1px solid #dee2e6; /* Light gray border */
+    border-radius: 0.5rem;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.card-hover-effect {
+    transition: all 0.3s ease;
+}
+
+.card-hover-effect:hover,
+.card-hover-effect:hover * {
+    background-color: #1E3A8A !important;  /* 진한 네이비 배경 */
+    color: #ffffff !important;             /* 글자색 흰색 */
+}
+
+/* .card-hover-effect:hover .card-title,
+.card-hover-effect:hover .card-text,
+.card-hover-effect:hover small,
+.card-hover-effect:hover .badge,
+.card-hover-effect:hover i {
+    color: #ffffff !important;             내부 텍스트, 뱃지 글자색도 흰색으로
+} */
+
+.card-hover-effect:hover .badge {
+    background-color: rgba(255, 255, 255, 0.2) !important;  /* 뱃지 배경 반투명 */
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 카드 높이 조정 */
+.fixed-card-height {
+    height: 500px;
+    overflow: hidden;
+} 
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.news-content {
+    white-space: pre-wrap; /* 줄바꿈 유지 */
+}
